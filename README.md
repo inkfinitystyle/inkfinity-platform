@@ -19,3 +19,18 @@ Initial focus: onboarding flow, data structure, and automation logic.
 
 ## Owner
 Inkfinity Ltd  
+## Output
+
+Onboarding responses are processed using mapping rules defined in:
+
+/hub/mapping.json
+
+A completed onboarding submission is transformed into a Hub object
+as defined in:
+
+/hub/model.json
+
+See a full example:
+
+• Input: /hub/example_onboarding_submission.json  
+• Output: /hub/example_output_hub.json
