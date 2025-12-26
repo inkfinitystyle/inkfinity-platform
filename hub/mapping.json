@@ -34,7 +34,7 @@
     { "from": "plan", "to": "hub.meta.plan" }
   ],
   "defaults": [
-    { "to": "hub.version", "value": "1.0" },
+    { "to": "version", "value": "1.0" },
     { "to": "hub.meta.created_at", "value": "AUTO_NOW" },
     { "to": "hub.meta.updated_at", "value": "AUTO_NOW" }
   ]
