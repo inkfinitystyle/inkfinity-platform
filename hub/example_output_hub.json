@@ -1,0 +1,45 @@
+{
+  "hub_name": "Puffin Good Food Truck",
+  "qr_code": "generated",
+  "landing_page": {
+    "title": "Puffin Good Food Truck",
+    "buttons": [
+      {
+        "id": "btn_whatsapp",
+        "label": "Message us",
+        "type": "whatsapp",
+        "destination": "https://wa.me/353851234567?text=Hi!%20I%20found%20you%20via%20your%20Inkfinity%20Hub."
+      },
+      {
+        "id": "btn_review",
+        "label": "Leave a review",
+        "type": "review",
+        "destination": "https://g.page/r/example/review"
+      },
+      {
+        "id": "btn_book",
+        "label": "Book / Order",
+        "type": "link",
+        "destination": "https://puffinfood.ie/order"
+      },
+      {
+        "id": "btn_menu",
+        "label": "Menu",
+        "type": "link",
+        "destination": "https://puffinfood.ie/menu"
+      },
+      {
+        "id": "btn_instagram",
+        "label": "Instagram",
+        "type": "social",
+        "destination": "https://instagram.com/puffinfoodtruck"
+      },
+      {
+        "id": "btn_facebook",
+        "label": "Facebook",
+        "type": "social",
+        "destination": "https://facebook.com/puffinfoodtruck"
+      }
+    ]
+  }
+}
