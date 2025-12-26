@@ -1,0 +1,101 @@
+{
+  "version": "1.0",
+  "hub": {
+    "hub_id": "hub_000001",
+    "status": "draft",
+    "created_at": "2025-12-26T00:00:00Z",
+    "updated_at": "2025-12-26T00:00:00Z",
+
+    "business": {
+      "business_name": "Example Business",
+      "industry": "Food & Drink",
+      "location": "Galway, Ireland",
+      "notes_internal": ""
+    },
+
+    "branding": {
+      "logo_url": null,
+      "primary_color": null,
+      "secondary_color": null,
+      "brand_tone": "modern"
+    },
+
+    "cta_goal": "get_more_enquiries",
+
+    "destinations": [
+      {
+        "id": "btn_01",
+        "label": "Message us",
+        "type": "whatsapp",
+        "destination": {
+          "phone_e164": "+353000000000",
+          "prefill_message": "Hi! I found you via your Inkfinity Hub."
+        },
+        "priority": 1,
+        "enabled": true
+      },
+      {
+        "id": "btn_02",
+        "label": "Leave a review",
+        "type": "review",
+        "destination": {
+          "url": "https://example.com/google-review-link"
+        },
+        "priority": 2,
+        "enabled": true
+      },
+      {
+        "id": "btn_03",
+        "label": "Book / Menu",
+        "type": "link",
+        "destination": {
+          "url": "https://example.com/menu-or-booking"
+        },
+        "priority": 3,
+        "enabled": true
+      },
+      {
+        "id": "btn_04",
+        "label": "Instagram",
+        "type": "social",
+        "destination": {
+          "platform": "instagram",
+          "url": "https://instagram.com/example"
+        },
+        "priority": 4,
+        "enabled": true
+      },
+      {
+        "id": "btn_05",
+        "label": "Pay",
+        "type": "payment",
+        "destination": {
+          "provider": "revolut",
+          "url": "https://example.com/revolut-pay-link"
+        },
+        "priority": 5,
+        "enabled": true
+      }
+    ],
+
+    "rules": {
+      "max_buttons": 6,
+      "collapse_after": 6,
+      "require_minimum_destinations": 1,
+      "allow_customer_no_login": true
+    },
+
+    "qr": {
+      "qr_id": "qr_000001",
+      "qr_target": "hub_url",
+      "hub_url": "https://inkfinity.ie/h/hub_000001",
+      "must_never_break": true
+    },
+
+    "validation": {
+      "is_publishable": false,
+      "manual_review_required": false,
+      "flags": []
+    }
+  }
+}
