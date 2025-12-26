@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "name": "Onboarding → Hub Mapping",
+  "description": "Rules that convert onboarding answers into hub destinations/buttons.",
+  "defaults": {
+    "prefill_whatsapp_message": "Hi! I found you via your Inkfinity Hub.",
+    "max_buttons": 6
+  },
+  "rules": [
+    {
+      "when": { "field_id": "whatsapp_number", "is_present": true },
+      "create_destination": {
+        "id": "btn_whatsapp",
+        "label": "Message us",
+        "type": "whatsapp",
+        "destination": {
+          "phone_e164_from_field": "whatsapp_number",
+          "prefill_message_from_default": "prefill_whatsapp_message"
+        },
+        "priority": 1
+      }
+    },
+    {
+      "when": { "field_id": "google_review_link", "is_present": true },
+      "create_destination": {
+        "id": "btn_review",
+        "label": "Leave a review",
+        "type": "review",
+        "destination": { "url_from_field": "google_review_link" },
+        "priority": 2
+      }
+    },
+    {
+      "when": { "field_id": "booking_or_order_link", "is_present": true },
+      "create_destination": {
+        "id": "btn_book",
+        "label": "Book / Order",
+        "type": "link",
+        "destination": { "url_from_field": "booking_or_order_link" },
+        "priority": 3
+      }
+    },
+    {
+      "when": { "field_id": "menu_link", "is_present": true },
+      "create_destination": {
+        "id": "btn_menu",
+        "label": "Menu",
+        "type": "link",
+        "destination": { "url_from_field": "menu_link" },
+        "priority": 4
+      }
+    },
+    {
+      "when": { "field_id": "instagram_url", "is_present": true },
+      "create_destination": {
+        "id": "btn_instagram",
+        "label": "Instagram",
+        "type": "social",
+        "destination": {
+          "platform": "instagram",
+          "url_from_field": "instagram_url"
+        },
+        "priority": 5
+      }
+    },
+    {
+      "when": { "field_id": "facebook_url", "is_present": true },
+      "create_destination": {
+        "id": "btn_facebook",
+        "label": "Facebook",
+        "type": "social",
+        "destination": {
+          "platform": "facebook",
+          "url_from_field": "facebook_url"
+        },
+        "priority": 6
+      }
+    },
+    {
+      "when": { "field_id": "payment_link", "is_present": true },
+      "create_destination": {
+        "id": "btn_pay",
+        "label": "Pay",
+        "type": "payment",
+        "destination": { "url_from_field": "payment_link" },
+        "priority": 7
+      }
+    }
+  ],
+  "post_process": {
+    "sort_by_priority": true,
+    "enforce_max_buttons_from_default": true,
+    "if_over_max": {
+      "keep_highest_priority": true,
+      "drop_rest": true
+    }
+  }
+}
