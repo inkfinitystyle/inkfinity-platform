@@ -1,36 +1,41 @@
 {
-  "rules": [
-    {
-      "if_present": "whatsapp_number",
-      "create_button": {
-        "type": "whatsapp",
-        "label": "WhatsApp Us",
-        "url_template": "https://wa.me/{{value}}"
-      }
-    },
-    {
-      "if_present": "google_review_link",
-      "create_button": {
-        "type": "review",
-        "label": "Leave a Review",
-        "url_template": "{{value}}"
-      }
-    },
-    {
-      "if_present": "menu_link",
-      "create_button": {
-        "type": "menu",
-        "label": "View Menu",
-        "url_template": "{{value}}"
-      }
-    },
-    {
-      "if_present": "payment_link",
-      "create_button": {
-        "type": "payment",
-        "label": "Pay Now",
-        "url_template": "{{value}}"
-      }
-    }
+  "version": "1.0",
+  "source": {
+    "questions_path": "onboarding/questions.json",
+    "submission_example_path": "hub/example_onboarding_submission.json"
+  },
+  "target": {
+    "hub_model_path": "hub/model.json",
+    "hub_output_example_path": "hub/example_output_hub.json"
+  },
+  "mappings": [
+    { "from": "business_name", "to": "hub.business_name" },
+    { "from": "tagline", "to": "hub.tagline" },
+    { "from": "logo_url", "to": "hub.logo_url" },
+
+    { "from": "brand_primary_color", "to": "hub.brand.primary_color" },
+    { "from": "brand_secondary_color", "to": "hub.brand.secondary_color" },
+    { "from": "brand_accent_color", "to": "hub.brand.accent_color" },
+
+    { "from": "phone", "to": "hub.contact.phone" },
+    { "from": "email", "to": "hub.contact.email" },
+    { "from": "whatsapp", "to": "hub.contact.whatsapp" },
+
+    { "from": "address", "to": "hub.location.address" },
+    { "from": "google_maps_url", "to": "hub.location.google_maps_url" },
+
+    { "from": "website", "to": "hub.links.website" },
+    { "from": "instagram", "to": "hub.links.instagram" },
+    { "from": "tiktok", "to": "hub.links.tiktok" },
+    { "from": "facebook", "to": "hub.links.facebook" },
+
+    { "from": "buttons", "to": "hub.buttons" },
+
+    { "from": "plan", "to": "hub.meta.plan" }
+  ],
+  "defaults": [
+    { "to": "hub.version", "value": "1.0" },
+    { "to": "hub.meta.created_at", "value": "AUTO_NOW" },
+    { "to": "hub.meta.updated_at", "value": "AUTO_NOW" }
   ]
 }
