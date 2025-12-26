@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "title": "Inkfinity Platform Onboarding",
+  "estimated_time_minutes": 5,
+  "sections": [
+    {
+      "id": "business_basics",
+      "title": "Business Basics",
+      "fields": [
+        { "id": "business_name", "label": "Business name", "type": "text", "required": true },
+        { "id": "industry", "label": "Industry", "type": "select", "required": true, "options": ["Food & Drink", "Retail", "Fitness", "Trades", "Beauty", "Hospitality", "Professional Services", "Clubs/Community", "Other"] },
+        { "id": "contact_name", "label": "Main contact name", "type": "text", "required": true },
+        { "id": "contact_email", "label": "Main contact email", "type": "email", "required": true },
+        { "id": "contact_phone", "label": "Main contact phone", "type": "tel", "required": false }
+      ]
+    },
+    {
+      "id": "brand_assets",
+      "title": "Brand & Look",
+      "fields": [
+        { "id": "brand_primary_color", "label": "Primary brand colour (hex or name)", "type": "text", "required": false },
+        { "id": "brand_secondary_color", "label": "Secondary brand colour (hex or name)", "type": "text", "required": false },
+        { "id": "logo_url", "label": "Logo link (optional)", "type": "url", "required": false },
+        { "id": "brand_tone", "label": "Brand tone", "type": "select", "required": false, "options": ["Clean & modern", "Luxury", "Bold & fun", "Minimal", "Traditional", "Other"] }
+      ]
+    },
+    {
+      "id": "links",
+      "title": "Where should the hub send customers?",
+      "fields": [
+        { "id": "website_url", "label": "Website", "type": "url", "required": false },
+        { "id": "google_reviews_url", "label": "Google Reviews link", "type": "url", "required": false },
+        { "id": "instagram_url", "label": "Instagram", "type": "url", "required": false },
+        { "id": "facebook_url", "label": "Facebook", "type": "url", "required": false },
+        { "id": "tiktok_url", "label": "TikTok", "type": "url", "required": false },
+        { "id": "whatsapp_number", "label": "WhatsApp number", "type": "tel", "required": false },
+        { "id": "menu_or_booking_url", "label": "Menu / Booking / Shop link", "type": "url", "required": false },
+        { "id": "payment_link", "label": "Payment link (Revolut/Stripe/etc.)", "type": "url", "required": false }
+      ]
+    },
+    {
+      "id": "preferences",
+      "title": "Preferences",
+      "fields": [
+        { "id": "cta_goal", "label": "Main goal of the hub", "type": "select", "required": true, "options": ["Get more enquiries", "Get more reviews", "Get more bookings", "Get more sales", "Grow social following", "Other"] },
+        { "id": "notes", "label": "Anything else we should know?", "type": "textarea", "required": false }
+      ]
+    }
+  ]
+}
