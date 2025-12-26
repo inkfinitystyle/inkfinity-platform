@@ -1,11 +1,29 @@
 {
-  "business_name": "Puffin Good Food Truck",
-  "industry": "Food & Drink",
-  "whatsapp_number": "+353851234567",
-  "google_review_link": "https://g.page/r/example/review",
-  "booking_or_order_link": "https://puffinfood.ie/order",
-  "menu_link": "https://puffinfood.ie/menu",
-  "instagram_url": "https://instagram.com/puffinfoodtruck",
-  "facebook_url": "https://facebook.com/puffinfoodtruck",
-  "payment_link": "https://revolut.me/puffinfood"
+  "business_name": "Puffin Coffee",
+  "tagline": "Coffee, toasties & good vibes",
+  "logo_url": "https://example.com/logo.png",
+
+  "brand_primary_color": "#111111",
+  "brand_secondary_color": "#ffffff",
+  "brand_accent_color": "#c9a227",
+
+  "phone": "+353851234567",
+  "email": "hello@puffincoffee.ie",
+  "whatsapp": "+353851234567",
+
+  "address": "Tuam, Co. Galway, Ireland",
+  "google_maps_url": "https://maps.google.com/?q=Tuam%2C%20Co.%20Galway",
+
+  "website": "https://puffincoffee.ie",
+  "instagram": "https://instagram.com/puffincoffee",
+  "tiktok": "https://tiktok.com/@puffincoffee",
+  "facebook": "https://facebook.com/puffincoffee",
+
+  "buttons": [
+    { "label": "Order Now", "type": "link", "url": "https://puffincoffee.ie/order" },
+    { "label": "Leave a Review", "type": "link", "url": "https://g.page/r/example/review" },
+    { "label": "Call Us", "type": "call", "value": "+353851234567" }
+  ],
+
+  "plan": "starter"
 }
