@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "hub": {
-    "hub_id": "hub_puffin_001",
+    "hub_id": "AUTO_GENERATE",
     "business_name": "Puffin Good Food Truck",
     "tagline": "Good food on the go",
     "logo_url": "https://example.com/logo.png",
@@ -22,40 +22,40 @@
     "links": {
       "website": "https://puffinfood.ie",
       "instagram": "https://instagram.com/puffinfoodtruck",
-      "tiktok": "https://tiktok.com/@puffinfoodtruck",
+      "tiktok": "https://www.tiktok.com/@puffinfoodtruck",
       "facebook": "https://facebook.com/puffinfoodtruck"
     },
     "buttons": [
       {
-        "id": "btn_order",
-        "label": "Book / Order",
+        "id": "btn_website",
+        "label": "Website",
         "type": "link",
-        "url": "https://puffinfood.ie/order",
-        "icon": "shopping-bag",
+        "url": "https://puffinfood.ie",
+        "icon": "globe",
         "priority": 1
       },
       {
-        "id": "btn_menu",
-        "label": "Menu",
+        "id": "btn_maps",
+        "label": "Find us",
         "type": "link",
-        "url": "https://puffinfood.ie/menu",
-        "icon": "menu",
+        "url": "https://maps.google.com/?q=Tuam%2C%20Co.%20Galway",
+        "icon": "map-pin",
         "priority": 2
       },
       {
-        "id": "btn_whatsapp",
-        "label": "Message us",
-        "type": "whatsapp",
-        "url": "https://wa.me/353851234567?text=Hi!%20I%20found%20you%20via%20your%20Inkfinity%20Hub.",
-        "icon": "message-circle",
+        "id": "btn_call",
+        "label": "Call",
+        "type": "call",
+        "url": "tel:+353851234567",
+        "icon": "phone",
         "priority": 3
       },
       {
-        "id": "btn_review",
-        "label": "Leave a review",
-        "type": "review",
-        "url": "https://g.page/r/example/review",
-        "icon": "star",
+        "id": "btn_whatsapp",
+        "label": "WhatsApp",
+        "type": "whatsapp",
+        "url": "https://wa.me/+353851234567?text=Hi!%20I%20found%20you%20via%20your%20Inkfinity%20Hub.",
+        "icon": "message-circle",
         "priority": 4
       },
       {
@@ -67,17 +67,17 @@
         "priority": 5
       },
       {
-        "id": "btn_facebook",
-        "label": "Facebook",
+        "id": "btn_tiktok",
+        "label": "TikTok",
         "type": "social",
-        "url": "https://facebook.com/puffinfoodtruck",
-        "icon": "facebook",
+        "url": "https://www.tiktok.com/@puffinfoodtruck",
+        "icon": "video",
         "priority": 6
       }
     ],
     "qr": {
-      "qr_destination_url": "https://hub.inkfinitystyle.com/puffin",
-      "qr_image_url": "https://example.com/qr-puffin.png"
+      "qr_destination_url": "AUTO_HUB_URL",
+      "qr_image_url": "AUTO_QR_IMAGE_URL"
     },
     "meta": {
       "created_at": "AUTO_NOW",
