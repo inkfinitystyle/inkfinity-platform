@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inkfinity Hub Generator (Internal)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 24px; }
+    .wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 18px; }
+    h1 { font-size: 22px; margin: 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 14px; padding: 14px; background: #fff; }
+    label { display: block; font-size: 12px; opacity: 0.8; margin: 10px 0 6px; }
+    input, select, textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 14px; }
+    textarea { min-height: 90px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    button { padding: 11px 12px; border: 0; border-radius: 12px; font-weight: 600; cursor: pointer; }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .primary { background: #111827; color: #fff; }
+    .ghost { background: #f3f4f6; color: #111827; }
+    .hint { font-size: 12px; opacity: 0.75; line-height: 1.4; }
+    .preview h2 { font-size: 16px; margin: 0 0 10px; }
+    .btns { display: grid; gap: 10px; }
+    .hubbtn { display: block; text-decoration: none; padding: 12px 12px; border-radius: 12px; border: 1px solid #e5e7eb; color: inherit; }
+    .hubbtn:hover { background: #f9fafb; }
+    pre { white-space: pre-wrap; word-break: break-word; margin: 0; font-size: 12px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Inkfinity Hub Generator (Internal)</h1>
+    <div class="hint">
+      This is a founder-only tool. It generates a Hub JSON + a basic preview using simple rules.
+      Nothing here is “live to customers” unless you choose to publish it.
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="row">
+          <button class="primary" id="generateBtn">Generate Hub</button>
+          <button class="ghost" id="resetBtn" type="button">Reset</button>
+        </div>
+
+        <label>Business name</label>
+        <input id="business_name" placeholder="e.g. Puffin Good Food Truck" />
+
+        <label>Goal</label>
+        <select id="goal">
+          <option value="networking">Networking (share everything fast)</option>
+          <option value="growth">Growth (drive followers + website)</option>
+          <option value="reviews">Reviews (push Google reviews)</option>
+          <option value="bookings">Bookings/Orders</option>
+        </select>
+
+        <label>Website</label>
+        <input id="website" placeholder="https://..." />
+
+        <label>Google Maps link</label>
+        <input id="google_maps_url" placeholder="https://maps.google.com/?q=..." />
+
+        <label>WhatsApp number (include country code)</label>
+        <input id="whatsapp" placeholder="+353..." />
+
+        <label>Phone</label>
+        <input id="phone" placeholder="+353..." />
+
+        <label>Email</label>
+        <input id="email" placeholder="hello@..." />
+
+        <label>Instagram</label>
+        <input id="instagram" placeholder="https://instagram.com/..." />
+
+        <label>TikTok</label>
+        <input id="tiktok" placeholder="https://www.tiktok.com/@..." />
+
+        <label>Facebook</label>
+        <input id="facebook" placeholder="https://facebook.com/..." />
+
+        <label>Notes (internal)</label>
+        <input id="notes" placeholder="Anything you want to remember..." />
+
+        <div class="hint" style="margin-top:10px;">
+          Tip: For WhatsApp, the clean final format usually needs the + removed for wa.me.
+          This tool keeps it simple for now.
+        </div>
+      </div>
+
+      <div class="card preview">
+        <h2>Preview</h2>
+        <div id="previewTitle" style="font-weight:700;margin:0 0 10px;"></div>
+        <div class="btns" id="previewButtons"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;">
+        <div style="font-weight:700;">Generated Hub JSON</div>
+        <button class="ghost" id="copyBtn" type="button">Copy JSON</button>
+      </div>
+      <pre id="jsonOut"></pre>
+    </div>
+  </div>
+
+  <script>
+    function clean(v) {
+      if (v === null || v === undefined) return "";
+      return String(v).trim();
+    }
+    function ensureHttps(url) {
+      const u = clean(url);
+      if (!u) return "";
+      if (u.startsWith("http://") || u.startsWith("https://")) return u;
+      return "https://" + u;
+    }
+    function waLink(number) {
+      const n = clean(number);
+      if (!n) return "";
+      return "https://wa.me/" + encodeURIComponent(n) + "?text=" + encodeURIComponent("Hi! I found you via your Inkfinity Hub.");
+    }
+    function telLink(number) {
+      const n = clean(number);
+      if (!n) return "";
+      return "tel:" + n;
+    }
+
+    function buildButtons(data) {
+      const buttons = [];
+      let p = 1;
+
+      const goal = data.goal;
+
+      const website = ensureHttps(data.website);
+      const maps = ensureHttps(data.google_maps_url);
+      const ig = ensureHttps(data.instagram);
+      const tt = ensureHttps(data.tiktok);
+      const fb = ensureHttps(data.facebook);
+      const wa = clean(data.whatsapp);
+      const phone = clean(data.phone);
+
+      // Goal-first ordering (simple and effective)
+      if (goal === "reviews") {
+        // Placeholder: you can add google reviews field later
+        // For now we push website + socials
+      }
+      if (goal === "bookings") {
+        if (website) buttons.push({ id:"btn_website", label:"Book / Order", type:"link", url: website, icon:"globe", priority:p++ });
+      }
+
+      // Core buttons
+      if (website && !buttons.find(b => b.id === "btn_website")) {
+        buttons.push({ id:"btn_website", label:"Website", type:"link", url: website, icon:"globe", priority:p++ });
+      }
+      if (maps) buttons.push({ id:"btn_maps", label:"Find us", type:"link", url: maps, icon:"map-pin", priority:p++ });
+      if (phone) buttons.push({ id:"btn_call", label:"Call", type:"call", url: telLink(phone), icon:"phone", priority:p++ });
+      if (wa) buttons.push({ id:"btn_whatsapp", label:"WhatsApp", type:"whatsapp", url: waLink(wa), icon:"message-circle", priority:p++ });
+      if (ig) buttons.push({ id:"btn_instagram", label:"Instagram", type:"social", url: ig, icon:"instagram", priority:p++ });
+      if (tt) buttons.push({ id:"btn_tiktok", label:"TikTok", type:"social", url: tt, icon:"video", priority:p++ });
+      if (fb) buttons.push({ id:"btn_facebook", label:"Facebook", type:"social", url: fb, icon:"facebook", priority:p++ });
+
+      // Cap at 6 for internal MVP
+      return buttons.slice(0, 6);
+    }
+
+    function generateHub() {
+      const data = {
+        business_name: clean(document.getElementById("business_name").value),
+        goal: clean(document.getElementById("goal").value),
+        website: clean(document.getElementById("website").value),
+        google_maps_url: clean(document.getElementById("google_maps_url").value),
+        whatsapp: clean(document.getElementById("whatsapp").value),
+        phone: clean(document.getElementById("phone").value),
+        email: clean(document.getElementById("email").value),
+        instagram: clean(document.getElementById("instagram").value),
+        tiktok: clean(document.getElementById("tiktok").value),
+        facebook: clean(document.getElementById("facebook").value),
+        notes: clean(document.getElementById("notes").value)
+      };
+
+      const hub = {
+        version: "1.0",
+        hub: {
+          hub_id: "AUTO_GENERATE",
+          business_name: data.business_name || "Untitled Business",
+          tagline: "",
+          logo_url: "",
+          brand: { primary_color: "", secondary_color: "", accent_color: "" },
+          contact: { phone: data.phone, email: data.email, whatsapp: data.whatsapp },
+          location: { address: "", google_maps_url: ensureHttps(data.google_maps_url) },
+          links: {
+            website: ensureHttps(data.website),
+            instagram: ensureHttps(data.instagram),
+            tiktok: ensureHttps(data.tiktok),
+            facebook: ensureHttps(data.facebook)
+          },
+          buttons: buildButtons(data),
+          qr: { qr_destination_url: "AUTO_HUB_URL", qr_image_url: "AUTO_QR_IMAGE_URL" },
+          meta: { created_at: "AUTO_NOW", updated_at: "AUTO_NOW", plan: "internal" },
+          notes_internal: data.notes
+        }
+      };
+
+      return hub;
+    }
+
+    function renderPreview(hubObj) {
+      const title = hubObj.hub.business_name;
+      document.getElementById("previewTitle").textContent = title;
+
+      const wrap = document.getElementById("previewButtons");
+      wrap.innerHTML = "";
+
+      hubObj.hub.buttons.forEach(btn => {
+        const a = document.createElement("a");
+        a.className = "hubbtn";
+        a.href = btn.url || "#";
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = btn.label;
+        wrap.appendChild(a);
+      });
+    }
+
+    function writeJson(hubObj) {
+      const out = JSON.stringify(hubObj, null, 2);
+      document.getElementById("jsonOut").textContent = out;
+      return out;
+    }
+
+    document.getElementById("generateBtn").addEventListener("click", () => {
+      const hubObj = generateHub();
+      writeJson(hubObj);
+      renderPreview(hubObj);
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      ["business_name","website","google_maps_url","whatsapp","phone","email","instagram","tiktok","facebook","notes"].forEach(id => {
+        document.getElementById(id).value = "";
+      });
+      document.getElementById("goal").value = "networking";
+      document.getElementById("jsonOut").textContent = "";
+      document.getElementById("previewTitle").textContent = "";
+      document.getElementById("previewButtons").innerHTML = "";
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const text = document.getElementById("jsonOut").textContent;
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById("copyBtn").textContent = "Copied";
+        setTimeout(() => (document.getElementById("copyBtn").textContent = "Copy JSON"), 900);
+      } catch (e) {
+        alert("Copy failed. Select and copy manually.");
+      }
+    });
+  </script>
+</body>
+</html>
