@@ -1,14 +1,13 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "source": {
-    "questions_path": "onboarding/questions.json",
     "submission_example_path": "hub/example_onboarding_submission.json"
   },
   "target": {
     "hub_model_path": "hub/model.json",
     "hub_output_example_path": "hub/example_output_hub.json"
   },
-  "mappings": [
+  "field_mappings": [
     { "from": "business_name", "to": "hub.business_name" },
     { "from": "tagline", "to": "hub.tagline" },
     { "from": "logo_url", "to": "hub.logo_url" },
@@ -29,13 +28,101 @@
     { "from": "tiktok", "to": "hub.links.tiktok" },
     { "from": "facebook", "to": "hub.links.facebook" },
 
-    { "from": "buttons", "to": "hub.buttons" },
-
     { "from": "plan", "to": "hub.meta.plan" }
   ],
+  "button_rules": {
+    "max_buttons": 6,
+    "sort_by_priority": true,
+    "rules": [
+      {
+        "if_present": "website",
+        "button": {
+          "id": "btn_website",
+          "label": "Website",
+          "type": "link",
+          "url_from_field": "website",
+          "icon": "globe",
+          "priority": 1
+        }
+      },
+      {
+        "if_present": "google_maps_url",
+        "button": {
+          "id": "btn_maps",
+          "label": "Find us",
+          "type": "link",
+          "url_from_field": "google_maps_url",
+          "icon": "map-pin",
+          "priority": 2
+        }
+      },
+      {
+        "if_present": "phone",
+        "button": {
+          "id": "btn_call",
+          "label": "Call",
+          "type": "call",
+          "url_template": "tel:{{value}}",
+          "value_from_field": "phone",
+          "icon": "phone",
+          "priority": 3
+        }
+      },
+      {
+        "if_present": "whatsapp",
+        "button": {
+          "id": "btn_whatsapp",
+          "label": "WhatsApp",
+          "type": "whatsapp",
+          "url_template": "https://wa.me/{{value}}?text=Hi!%20I%20found%20you%20via%20your%20Inkfinity%20Hub.",
+          "value_from_field": "whatsapp",
+          "icon": "message-circle",
+          "priority": 4
+        }
+      },
+      {
+        "if_present": "instagram",
+        "button": {
+          "id": "btn_instagram",
+          "label": "Instagram",
+          "type": "social",
+          "url_from_field": "instagram",
+          "icon": "instagram",
+          "priority": 5
+        }
+      },
+      {
+        "if_present": "tiktok",
+        "button": {
+          "id": "btn_tiktok",
+          "label": "TikTok",
+          "type": "social",
+          "url_from_field": "tiktok",
+          "icon": "video",
+          "priority": 6
+        }
+      },
+      {
+        "if_present": "facebook",
+        "button": {
+          "id": "btn_facebook",
+          "label": "Facebook",
+          "type": "social",
+          "url_from_field": "facebook",
+          "icon": "facebook",
+          "priority": 7
+        }
+      }
+    ]
+  },
   "defaults": [
     { "to": "version", "value": "1.0" },
+    { "to": "hub.hub_id", "value": "AUTO_GENERATE" },
     { "to": "hub.meta.created_at", "value": "AUTO_NOW" },
     { "to": "hub.meta.updated_at", "value": "AUTO_NOW" }
+  ],
+  "qr_defaults": [
+    { "to": "hub.qr.qr_destination_url", "value": "AUTO_HUB_URL" },
+    { "to": "hub.qr.qr_image_url", "value": "AUTO_QR_IMAGE_URL" }
   ]
 }
