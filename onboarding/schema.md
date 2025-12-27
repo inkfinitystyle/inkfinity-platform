@@ -71,3 +71,15 @@ AI suggestions must be presented as optional recommendations, never auto-publish
 Flag for manual review if:
 - No link fields were provided at all
 - More than 2 URLs fail va
+
+## AI Assistance
+
+After onboarding data is collected and before hub generation,
+an optional AI suggestions step may run.
+
+AI suggestions:
+- Do not modify raw onboarding data
+- Are presented for user confirmation
+- Are applied only if accepted
+
+Approved suggestions are merged before mapping rules are applied.
